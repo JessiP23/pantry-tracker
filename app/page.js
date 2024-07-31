@@ -3,9 +3,15 @@ import React, {useState, useEffect} from "react";
 import { addDoc, collection, getDocs, onSnapshot, querySnapshot, query, deleteDoc, doc } from "firebase/firestore"; 
 import { db } from "./firebase";
 import Sidebar from "./sidebar";
-
+import InventoryPage from "./inventory";
+import RecipePage from "./recipePage";
+import MapPage from "./mapPage";
+import HomePage from "./homePage";
 
 export default function Home() {
+  // selected option default home
+  const [selectedOptionFromMenu, setSelectedOptionFromMenu] = useState('Home');
+
   const [items, setItems] = useState([
     // {name: 'Cofee', price: 4.95},
     // {name: 'Movie', price: 28.43},
@@ -16,6 +22,22 @@ export default function Home() {
 
 
   const [total, setTotal] = useState(0);
+
+  // render content based on the option selected
+  const showContentFromSidebar = () => {
+    switch(selectedOptionFromMenu) {
+      case 'Home':
+        return <HomePage />;
+      case 'Inventory':
+        return <InventoryPage />
+      case 'Recipe':
+        return <RecipePage />
+      case 'Map':
+        return <MapPage />
+      default:
+        return <HomePage/>
+    }
+  }
 
   // Add item to database
 
@@ -64,7 +86,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen">
-      <Sidebar />
+      <Sidebar selectedOptionFromMenu={setSelectedOptionFromMenu} />
       <div className="w-[80%] ml-[20%] p-24 overflow-auto">
         <div className=" max-w-5xl items-center justify-between font-mono text-sm ">
           <div className="bg-slate-800 p-4 rounded-lg">
@@ -93,6 +115,7 @@ export default function Home() {
               </div>
             )}
           </div>
+          {showContentFromSidebar()}
         </div>
       </div>
     </main>

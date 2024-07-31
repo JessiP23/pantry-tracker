@@ -1,14 +1,16 @@
 import React from "react";
 
-const Sidebar = () => {
+// Take a parameter option from the menu
+const Sidebar = ({ selectedOptionFromMenu }) => {
     return (
         <div className="w-1/5 min-h-screen bg-slate-800 text-white p-4 fixed text-center">
         <h2 className="text-4xl mt-[10%] ">Pantry.ai</h2>
         <ul>
-          <li className="mt-[30%] text-xl py-2">Home</li>
-          <li className="mt-[15%] text-xl py-2">Inventory</li>
-          <li className="mt-[15%] text-xl py-2">Recipe</li>
-          <li className="mt-[15%] text-xl py-2">Map</li>
+            {/* Conditional rendering */}
+          <li className="mt-[30%] text-xl py-2" onClick={() => selectedOptionFromMenu('Home')} >Home</li>
+          <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('Inventory')}>Inventory</li>
+          <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('Recipe')}>Recipe</li>
+          <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('Map')}>Map</li>
         </ul>
       </div>
     )
