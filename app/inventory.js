@@ -32,7 +32,7 @@ const InventoryPage = () => {
     // {name: 'Candy', price: 4.5},
   ]);
 
-  const [newItem, setNewItem] = useState({name: '', price: ''})
+  const [newItem, setNewItem] = useState({name: '', quantity: ''})
 
 
   const [total, setTotal] = useState(0);
@@ -57,15 +57,15 @@ const InventoryPage = () => {
 
   const addItem = async (e) => {
     e.preventDefault();
-    if(newItem.name !== '' && newItem.price !== '') {
+    if(newItem.name !== '' && newItem.quantity !== '') {
       await addDoc(collection(db, 'items'), {
         name: newItem.name.trim(),
-        price: newItem.price,
+        quantity: newItem.quantity,
       });
 
-      const newItemToAdd = { ...newItem, price: parseFloat(newItem.price) };
+      const newItemToAdd = { ...newItem, price: parseFloat(newItem.quantity) };
       setItems([...items, newItemToAdd]);
-      setNewItem({ name: '', price: '' });
+      setNewItem({ name: '', quantity: '' });
 
     }
   }
@@ -85,8 +85,8 @@ const InventoryPage = () => {
 
       // Read total from itemsArray
       const calculateTotal = () => {
-        const totalPrice = itemsArray.reduce((sum, item) => sum + parseFloat(item.price), 0)
-        setTotal(totalPrice)
+        const totalQuantity = itemsArray.reduce((sum, item) => sum + parseFloat(item.quantity), 0)
+        setTotal(totalQuantity)
       }
       calculateTotal()
       return () => unsubscribe();
@@ -98,32 +98,32 @@ const InventoryPage = () => {
     await deleteDoc(doc(db, 'items', id)) 
   }
   return (
-    <div className="bg-slate-800 p-4 rounded-lg">
-            <form className="grid grid-cols-6 items-center text-black">
-              <input value={newItem.name} onChange={(e) => setNewItem({...newItem, name: e.target.value})} className="col-span-3 p-3 border" type="text" placeholder="Enter item" />
-              <input value={newItem.price} onChange={(e) => setNewItem({...newItem, price: e.target.value})} className="col-span-2 p-3 border mx-3" type="number" placeholder="Enter $" />
-              <button onClick={addItem} className="text-white bg-slate-950 hover:bg-slate-900 p-3 text-xl" type="submit">
-                +
-              </button>
-            </form>
-            <ul>
-              {items.map((item, id) => (
-                <li key={ id} className="my-4 w-full flex justify-between bg-slate-950">
-                  <div className="p-4 w-full flex justify-between">
-                    <span className="capitalize">{item.name}</span>
-                    <span>${item.price}</span>
-                  </div>
-                  <button onClick={() => deleteItem(item.id)} className="ml-8 p-4 border-l-2 border-slate-900 hover:bg-slate-900 w-16">X</button>
-                </li>
-              ))}
-            </ul>
-            {items.length < 1 ? ('') : (
-              <div className="flex justify-between p-3">
-                <span>Total</span>
-                <span>${total}</span>
-              </div>
-            )}
-          </div>
+    <div className="p-4 rounded-lg">
+      <form className="grid grid-cols-6 items-center text-black">
+        <input value={newItem.name} onChange={(e) => setNewItem({...newItem, name: e.target.value})} className="col-span-3 p-3 border" type="text" placeholder="Enter item" />
+        <input value={newItem.quantity} onChange={(e) => setNewItem({...newItem, quantity: e.target.value})} className="col-span-2 p-3 border mx-3" type="number" placeholder="Enter quantity" />
+        <button onClick={addItem} className="text-white bg-slate-950 hover:bg-slate-900 p-3 text-xl" type="submit">
+          +
+        </button>
+      </form>
+      <ul>
+        {items.map((item, id) => (
+          <li key={ id} className="my-4 w-full flex justify-between bg-slate-950">
+            <div className="p-4 w-full flex justify-between">
+              <span className="capitalize">{item.name}</span>
+              <span>{item.quantity} {item.name} added to your pantry</span>
+            </div>
+            <button onClick={() => deleteItem(item.id)} className="ml-8 p-4 border-l-2 border-slate-900 hover:bg-slate-900 w-16">X</button>
+          </li>
+        ))}
+      </ul>
+      {items.length < 1 ? ('') : (
+        <div className="flex justify-between p-3">
+          <span>Total</span>
+          <span>{total} products in inventory</span>
+        </div>
+      )}
+    </div>
   )
 }
 

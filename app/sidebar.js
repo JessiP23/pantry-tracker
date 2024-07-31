@@ -11,6 +11,7 @@ const Sidebar = ({ selectedOptionFromMenu }) => {
           <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('Inventory')}>Inventory</li>
           <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('Recipe')}>Recipe</li>
           <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('Map')}>Map</li>
+          <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('History')}>History</li>
         </ul>
       </div>
     )
