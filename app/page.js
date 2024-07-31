@@ -89,7 +89,7 @@ export default function Home() {
       <Sidebar selectedOptionFromMenu={setSelectedOptionFromMenu} />
       <div className="w-[80%] ml-[20%] p-24 overflow-auto">
         <div className=" max-w-5xl items-center justify-between font-mono text-sm ">
-          <div className="bg-slate-800 p-4 rounded-lg">
+          {/* <div className="bg-slate-800 p-4 rounded-lg">
             <form className="grid grid-cols-6 items-center text-black">
               <input value={newItem.name} onChange={(e) => setNewItem({...newItem, name: e.target.value})} className="col-span-3 p-3 border" type="text" placeholder="Enter item" />
               <input value={newItem.price} onChange={(e) => setNewItem({...newItem, price: e.target.value})} className="col-span-2 p-3 border mx-3" type="number" placeholder="Enter $" />
@@ -114,7 +114,7 @@ export default function Home() {
                 <span>${total}</span>
               </div>
             )}
-          </div>
+          </div> */}
           {showContentFromSidebar()}
         </div>
       </div>
