@@ -1,0 +1,13 @@
+.container-response{
+    width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.container-response pre {
+    white-space: pre-wrap;
+}

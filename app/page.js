@@ -7,7 +7,7 @@ import InventoryPage from "./inventory";
 import RecipePage from "./recipePage";
 import MapPage from "./mapPage";
 import HomePage from "./homePage/homePage";
-import HistoryPage from "./history/historyPage";
+import HistoryPage from "./history/page";
 
 export default function Home() {
   // selected option default home
@@ -37,8 +37,7 @@ export default function Home() {
         return <MapPage />
       case 'History':
         return <HistoryPage />
-      default:
-        return <HomePage/>
+
     }
   }
 
