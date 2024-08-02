@@ -40,7 +40,7 @@ const RecipePage = () => {
         <div className="text-center">
             <h1>Recipe Page</h1>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="ingredients">Ingredients (comma-separated):</label>
+                <label htmlFor="ingredients">Ingredients:</label>
                 <input
                     type="text"
                     id="ingredients"
