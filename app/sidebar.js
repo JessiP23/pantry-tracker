@@ -7,11 +7,9 @@ const Sidebar = ({ selectedOptionFromMenu }) => {
         <h2 className="text-4xl mt-[10%] ">Pantry.ai</h2>
         <ul>
             {/* Conditional rendering */}
-          <li className="mt-[30%] text-xl py-2" onClick={() => selectedOptionFromMenu('Home')} >Home</li>
-          <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('Inventory')}>Inventory</li>
-          <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('Recipe')}>Recipe</li>
-          <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('Map')}>Map</li>
-          <li className="mt-[15%] text-xl py-2" onClick={() => selectedOptionFromMenu('History')}>History</li>
+          <li className="mt-[30%] text-xl py-2 cursor-pointer" onClick={() => selectedOptionFromMenu('Home')} >Home</li>
+          <li className="mt-[15%] text-xl py-2 cursor-pointer" onClick={() => selectedOptionFromMenu('Inventory')}>Inventory</li>
+          <li className="mt-[15%] text-xl py-2 cursor-pointer" onClick={() => selectedOptionFromMenu('Recipe')}>Recipe</li>
         </ul>
       </div>
     )
