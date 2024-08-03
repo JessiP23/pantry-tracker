@@ -1,0 +1,35 @@
+.diagonal-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transform: skewX(-20deg);
+    transform-origin: 0% 0%;
+  }
+  
+  .diagonal-background img {
+    width: 150%;
+    height: 100%;
+    object-fit: cover;
+    transform: skewX(20deg);
+    transform-origin: 0% 0%;
+  }
+
+  .content-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content-container h1 {
+    margin-bottom: 2rem;
+  }
