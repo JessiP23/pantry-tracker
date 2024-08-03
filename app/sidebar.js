@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 // Take a parameter option from the menu
 const Sidebar = ({ selectedOptionFromMenu }) => {
@@ -7,9 +8,13 @@ const Sidebar = ({ selectedOptionFromMenu }) => {
         <h2 className="text-4xl mt-[10%] font-semibold ">Pantry.ai</h2>
         <ul>
             {/* Conditional rendering */}
-          <li className="mt-[30%] text-xl py-2 cursor-pointer font-semibold" onClick={() => selectedOptionFromMenu('Home')} >Home</li>
-          <li className="mt-[15%] text-xl py-2 cursor-pointer font-semibold" onClick={() => selectedOptionFromMenu('Inventory')}>Inventory</li>
-          <li className="mt-[15%] text-xl py-2 cursor-pointer font-semibold" onClick={() => selectedOptionFromMenu('Recipe')}>Recipe</li>
+          <li className="mt-[30%] text-xl py-2 cursor-pointer font-semibold" >
+            <Link href="/">Home</Link>
+          </li>
+          <li className="mt-[15%] text-xl py-2 cursor-pointer font-semibold">
+            <Link href="/dashboard/inventory">Inventory</Link>
+          </li>
+          <li className="mt-[15%] text-xl py-2 cursor-pointer font-semibold"><Link href='/dashboard/recipe'>Recipe</Link></li>
         </ul>
       </div>
     )

@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import pantry from '../images/pantry.jpg'
-import tracker from '../images/tracker.jpg';
-import fruit from '../images/fruit.jpg';
+import pantry from '../../images/pantry.jpg'
+import tracker from '../../images/tracker.jpg';
+import fruit from '../../images/fruit.jpg';
 
 const HomePage = () => {
   return (
