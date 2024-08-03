@@ -114,7 +114,7 @@ const InventoryPage = () => {
               </div>
               <button
                 onClick={() => setActiveItem(item)}
-                className="ml-8 p-4 border-l-2 border-slate-900 "
+                className="ml-8 p-4 border-l-2 bg-yellow-500"
               >
                 Update
               </button>
