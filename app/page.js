@@ -63,10 +63,10 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="flex min-h-screen">
+    <main>
       <Sidebar selectedOptionFromMenu={setSelectedOptionFromMenu} />
-      <div className="w-[80%] ml-[20%] p-24 overflow-auto">
-        <div className=" max-w-5xl items-center justify-between font-mono text-sm ">
+      <div>
+        <div className="items-center justify-between font-mono text-sm ">
           {showContentFromSidebar()}
         </div>
       </div>
