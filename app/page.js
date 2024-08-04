@@ -1,13 +1,10 @@
 'use client'
 import React, {useState, useEffect} from "react";
-import { addDoc, collection, getDocs, onSnapshot, querySnapshot, query, deleteDoc, doc } from "firebase/firestore"; 
-import { db } from "./firebase";
 import pantry from './images/pantry.jpg'
 import tracker from './images/tracker.jpg'
 import fruit from './images/fruit.jpg'
 import Image from "next/image";
 import Link from "next/link";
-import Sidebar from './sidebar'
 import './page.css'
 import useAuth from "./hooks/useAuth";
 
@@ -16,10 +13,6 @@ export default function Home() {
 
   const {user, signOutUser} = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleSideBar = () => {
-    setIsOpen(!isOpen);
-  };
 
   const handleSignOut = async () => {
     console.log('Calling signoutuser function...');
@@ -33,7 +26,7 @@ export default function Home() {
   return (
     <main>
       {user? (
-      <div className={`lg:w-1/5 xl:w-1/5 lg:block xl:block md:hidden sm:hidden min-h-screen bg-slate-800 text-white p-4 fixed text-center top-0 sidebar-i ${isOpen ? 'open': ''}`}>
+      <div className="lg:w-1/5 xl:w-1/5 lg:block xl:block md:hidden sm:hidden min-h-screen bg-slate-800 text-white p-4 fixed text-center top-0 sidebar-i">
         <h2 className="text-4xl mt-[10%] font-semibold ">Pantry.ai</h2>
         <ul>
           <li className="mt-[30%] text-xl py-2 cursor-pointer font-semibold" >
@@ -73,36 +66,6 @@ export default function Home() {
         
       </ul>
     </div>
-      
-      <section className="p-24 ml-[20%] w-[80%] relative h-screen">
-        <div className="diagonal-background">
-          <Image src={pantry} alt="pantry image" layout="fill" objectFit="cover" />
-        </div>
-        <div className="content-container">
-          <h1 className="text-center text-white text-5xl">
-            Welcome <span className="text-purple-900"> to </span> my <span className="text-purple-900"> Pantry </span> Tracker <span className="text-purple-900"> App </span>
-          </h1>
-          <div>
-            <div className="mx-auto px-4 sm:px-6 ">
-              <div className="mx-auto py-12 sm:py-24 lg:py-15">
-                <div className="mt-3 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
-
-                  <div className="group relative">
-                    <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-                      <Image src={tracker} alt="image 1" className="h-full w-full object-cover object-center"/>
-                    </div>
-                  </div>
-                  <div className="group relative">
-                    <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-                      <Image src={fruit} alt="fruit image" className="h-full w-full object-cover object-center"/>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
         </div>
         
       )}
