@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { addDoc, collection, getDocs, onSnapshot, querySnapshot, query, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs, onSnapshot, querySnapshot, query, deleteDoc, doc, updateDoc, setDoc } from "firebase/firestore";
 import { ExpandableCard } from "../../components/ExpandableCard";
 import { db } from "../../firebase";
 import Link from "next/link";
@@ -28,8 +28,8 @@ const InventoryPage = () => {
       if (!user) {
         router.push('/signin');
       } else {
-        const q = query(collection(db, "items"));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const inventoryColRef = collection(db, 'users', user.uid, 'inventory');
+        const unsubscribe = onSnapshot(inventoryColRef, (querySnapshot) => {
           const itemsArray = [];
           querySnapshot.forEach((doc) => {
             itemsArray.push({ id: doc.id, ...doc.data() });
@@ -45,7 +45,9 @@ const InventoryPage = () => {
   const addItem = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "items"), {
+      const userRef = doc(db, 'users', user.uid);
+      const inventoryColRef = collection(userRef, 'inventory');
+      await addDoc(inventoryColRef, {
         name: newItem.name.trim(),
         quantity: newItem.quantity,
       });
@@ -76,7 +78,9 @@ const InventoryPage = () => {
 
   const deleteItem = async (id) => {
     try {
-      await deleteDoc(doc(db, "items", id));
+      const userRef = doc(db, 'users', user.uid);
+      const inventoryColRef = collection(userRef, 'inventory');
+      await deleteDoc(doc(inventoryColRef, id));
       setItems(items.filter((item) => item.id !== id));
     } catch (error) {
       setError(error.message);
@@ -85,7 +89,9 @@ const InventoryPage = () => {
 
   const updateItemQuantity = async (id, newQuantity) => {
     try {
-      await updateDoc(doc(db, "items", id), { quantity: newQuantity });
+      const userRef = doc(db, 'users', user.uid)
+      const inventoryColRef = collection(userRef, 'inventory');
+      await updateDoc(doc(inventoryColRef, id), { quantity: newQuantity });
       setItems(items.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item)));
     } catch (error) {
       setError(error.message);
