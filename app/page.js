@@ -2,17 +2,16 @@
 import React, {useState, useEffect} from "react";
 import { addDoc, collection, getDocs, onSnapshot, querySnapshot, query, deleteDoc, doc } from "firebase/firestore"; 
 import { db } from "./firebase";
-import Sidebar from "./sidebar";
-import InventoryPage from "./dashboard/inventory/page";
-import RecipePage from "./dashboard/recipe/page";
-import MapPage from "./mapPage";
-import HistoryPage from "./dashboard/app-history/page";
-import HomePage from './dashboard/homep/page'
+import pantry from './images/pantry.jpg'
+import tracker from './images/tracker.jpg'
+import fruit from './images/fruit.jpg'
+import Image from "next/image";
+import Link from "next/link";
+import Sidebar from './sidebar'
+import './page.css'
 
 
 export default function Home() {
-  // selected option default home
-  const [selectedOptionFromMenu, setSelectedOptionFromMenu] = useState('Home');
 
   const [items, setItems] = useState([
     // {name: 'Cofee', price: 4.95},
@@ -22,22 +21,7 @@ export default function Home() {
 
   const [total, setTotal] = useState(0);
 
-  // render content based on the option selected
-  const showContentFromSidebar = () => {
-    switch(selectedOptionFromMenu) {
-      case 'Home':
-        return <HomePage />;
-      case 'Inventory':
-        return <InventoryPage />
-      case 'Recipe':
-        return <RecipePage />
-      case 'Map':
-        return <MapPage />
-      case 'History':
-        return <HistoryPage />
 
-    }
-  }
 
   // Read items from database
 
@@ -64,12 +48,37 @@ export default function Home() {
 
   return (
     <main>
-      <Sidebar selectedOptionFromMenu={setSelectedOptionFromMenu} />
-      <div>
-        <div className="items-center justify-between font-mono text-sm ">
-          {showContentFromSidebar()}
+      <Sidebar />
+      
+      <section className="p-24 ml-[20%] w-[80%] relative h-screen">
+        <div className="diagonal-background">
+          <Image src={pantry} alt="pantry image" layout="fill" objectFit="cover" />
         </div>
-      </div>
+        <div className="content-container">
+          <h1 className="text-center text-white text-5xl">
+            Welcome <span className="text-purple-900"> to </span> my <span className="text-purple-900"> Pantry </span> Tracker <span className="text-purple-900"> App </span>
+          </h1>
+          <div>
+            <div className="mx-auto px-4 sm:px-6 ">
+              <div className="mx-auto py-12 sm:py-24 lg:py-15">
+                <div className="mt-3 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
+
+                  <div className="group relative">
+                    <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                      <Image src={tracker} alt="image 1" className="h-full w-full object-cover object-center"/>
+                    </div>
+                  </div>
+                  <div className="group relative">
+                    <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                      <Image src={fruit} alt="fruit image" className="h-full w-full object-cover object-center"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

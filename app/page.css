@@ -1,0 +1,40 @@
+.diagonal-background {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width:100%;
+  height: 100%;
+  overflow: hidden;
+  transform: skewX(-20deg);
+  transform-origin: top right;
+  z-index: -1;
+}
+
+.diagonal-background img {
+  height: 100%;
+  width: auto;
+  transform: skewX(20deg);
+  transform-origin: top left;
+}
+
+.content-container {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.diagonal-background img {
+  object-fit: cover;
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
