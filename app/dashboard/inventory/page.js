@@ -29,15 +29,16 @@ const InventoryPage = () => {
         router.push('/signin');
       } else {
         const inventoryColRef = collection(db, 'users', user.uid, 'inventory');
-        const unsubscribe = onSnapshot(inventoryColRef, (querySnapshot) => {
-          const itemsArray = [];
-          querySnapshot.forEach((doc) => {
-            itemsArray.push({ id: doc.id, ...doc.data() });
-          });
-          setItems(itemsArray);
-          calculateTotal(itemsArray);
+      const fetchInventory = async () => {
+        const querySnapshot = await getDocs(inventoryColRef);
+        const itemsArray = [];
+        querySnapshot.forEach((doc) => {
+          itemsArray.push({ id: doc.id, ...doc.data() });
         });
-        return () => unsubscribe();
+        setItems(itemsArray);
+        calculateTotal(itemsArray);
+      };
+      fetchInventory();
       }
     }
   }, [user, loading, router]);
