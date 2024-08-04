@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useEffect } from "react";
 import { addDoc, collection, getDocs, onSnapshot, querySnapshot, query, deleteDoc, doc, updateDoc, setDoc } from "firebase/firestore";
@@ -29,16 +30,15 @@ const InventoryPage = () => {
         router.push('/signin');
       } else {
         const inventoryColRef = collection(db, 'users', user.uid, 'inventory');
-      const fetchInventory = async () => {
-        const querySnapshot = await getDocs(inventoryColRef);
-        const itemsArray = [];
-        querySnapshot.forEach((doc) => {
-          itemsArray.push({ id: doc.id, ...doc.data() });
+        const unsubscribe = onSnapshot(inventoryColRef, (querySnapshot) => {
+          const itemsArray = [];
+          querySnapshot.forEach((doc) => {
+            itemsArray.push({ id: doc.id, ...doc.data() });
+          });
+          setItems(itemsArray);
+          calculateTotal(itemsArray);
         });
-        setItems(itemsArray);
-        calculateTotal(itemsArray);
-      };
-      fetchInventory();
+        return () => unsubscribe();
       }
     }
   }, [user, loading, router]);
@@ -208,3 +208,4 @@ const InventoryPage = () => {
 };
 
 export default InventoryPage;
+
