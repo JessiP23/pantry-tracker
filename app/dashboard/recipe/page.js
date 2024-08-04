@@ -53,8 +53,8 @@ const RecipePage = () => {
             </div>
             <div className="text-center w-[75%] ml-[23%] mt-[5%]">
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="ingredients" className="mb-2 text-lg font-medium text-yellow-50 dark:text-white">
-                        Please add 3 ingredients to create a recipe at home:
+                    <label htmlFor="ingredients" className="text-lg font-medium text-yellow-50 dark:text-white">
+                        Please add 3 ingredients to create a recipe:
                     </label>
                     <input
                         type="text"
@@ -64,9 +64,9 @@ const RecipePage = () => {
                         onChange={(e) => setIngredients(e.target.value)}
                         required
                         color="black"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="carrot, apple, eggs" 
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5" placeholder="carrot, apple, eggs" 
                     />
-                    <button type="submit">Get Recipe</button>
+                    <button type="submit" className="mt-5 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white font-bold py-2 px-4 rounded-full shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl mb-6">Get Recipe</button>
                 </form>
 
                 {error && <p>Error: {error}</p>}
