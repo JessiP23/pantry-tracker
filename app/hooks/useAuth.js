@@ -15,7 +15,7 @@ const useAuth = () => {
       if (user) {
         setUser(user);
       } else {
-        router.push('/signin');
+        router.push('/');
       }
       setLoading(false);
     });
