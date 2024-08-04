@@ -44,7 +44,7 @@ export default function Home() {
           </li>
           <li className="mt-[15%] text-xl py-2 cursor-pointer font-semibold"><Link href='/dashboard/recipe'>Recipe</Link></li>
 
-          <h1 className="mt-[15%] text-xl py-2 cursor-pointer font-semibold">You are authenticated as {user.email}</h1>
+          <h1 className="mt-[65%] text-lg py-2 cursor-pointer font-semibold">{user.email}</h1>
          
           <li className="mt-[15%] text-xl py-2 cursor-pointer font-semibold "><Link href='/signin'>
             <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" className="fixed left-40 bottom-10" xmlns="http://www.w3.org/2000/svg" onClick={handleSignOut}>
