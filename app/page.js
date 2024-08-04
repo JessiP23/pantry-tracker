@@ -14,7 +14,12 @@ import useAuth from "./hooks/useAuth";
 
 export default function Home() {
 
-  const {user} = useAuth();
+  const {user, signOutUser} = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSideBar = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleSignOut = async () => {
     console.log('Calling signoutuser function...');
@@ -28,7 +33,7 @@ export default function Home() {
   return (
     <main>
       {user? (
-      <div className="w-1/5 min-h-screen bg-slate-800 text-white p-4 fixed text-center top-0">
+      <div className={`lg:w-1/5 xl:w-1/5 lg:block xl:block md:hidden sm:hidden min-h-screen bg-slate-800 text-white p-4 fixed text-center top-0 sidebar-i ${isOpen ? 'open': ''}`}>
         <h2 className="text-4xl mt-[10%] font-semibold ">Pantry.ai</h2>
         <ul>
           <li className="mt-[30%] text-xl py-2 cursor-pointer font-semibold" >
