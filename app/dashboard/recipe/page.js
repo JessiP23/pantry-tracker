@@ -50,16 +50,26 @@ const RecipePage = () => {
 
             const data = await res.json();
             console.log('Response Data:', data);
-            setResponse(JSON.stringify(data, null, 2)); 
+            if (data.error) {
+                setError(data.error);
+                setResponse(null);
+            } else {
+                setResponse(data.content);
+                setError(null);
+            }
         } catch(err) {
             setError(err.message);
+            setResponse(null);
         }
     };
 
-    if (loading) {
-        return <p>Loading....</p>
-    }
-
+    const parseResponseData = (content) => {
+        // Extract relevant information from the response data
+        const lines = content.replace(/\n\n/g, '\n').split('\n');
+        return lines.map((line, index) => (
+            <p key={index}>{line}</p>
+        ));
+      };
 
     return (
         <div>
@@ -103,9 +113,9 @@ const RecipePage = () => {
                 {error && <p>Error: {error}</p>}
                 <div className="w-[100%] text-lg">
                     {response && (
-                        <Markdown>
-                            {response}
-                        </Markdown>
+                        <div>
+                            {parseResponseData(response)}
+                        </div>
                     )}
                 </div>
             </div>
