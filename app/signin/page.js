@@ -10,7 +10,7 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-  const [error, setError] = ('');
+  const [error, setError] = useState('');
 
   const handleSignIn = async (e) => {
     e.preventDefault();

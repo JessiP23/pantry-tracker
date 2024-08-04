@@ -4,7 +4,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useRouter } from 'next/navigation';
 import './style.css'
-import Link from 'next/link';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
